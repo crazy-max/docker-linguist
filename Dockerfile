@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.9
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.10
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
