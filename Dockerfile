@@ -6,12 +6,9 @@ ARG BUILDPLATFORM
 RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
 
 LABEL maintainer="CrazyMax" \
-  org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.name="linguist" \
   org.label-schema.description="GitHub Language Savant to detect blob languages." \
-  org.label-schema.version=$VERSION \
   org.label-schema.url="https://github.com/crazy-max/docker-linguist" \
-  org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.vcs-url="https://github.com/crazy-max/docker-linguist" \
   org.label-schema.vendor="CrazyMax" \
   org.label-schema.schema-version="1.0"
