@@ -1,8 +1,9 @@
-FROM alpine:3.9
+# syntax=docker/dockerfile:experimental
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.9
 
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
 
 LABEL maintainer="CrazyMax" \
   org.label-schema.build-date=$BUILD_DATE \
