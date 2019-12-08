@@ -20,7 +20,7 @@ LABEL maintainer="CrazyMax" \
   org.label-schema.vendor="CrazyMax" \
   org.label-schema.schema-version="1.0"
 
-ENV VERSION="7.6.1"
+ENV VERSION="7.7.0"
 
 RUN apk --update --no-cache add \
     ruby \
