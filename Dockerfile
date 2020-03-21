@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.10
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.11
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -32,7 +32,7 @@ RUN apk --update --no-cache add \
     cmake \
     icu-dev \
     ruby-dev \
-  && gem install --no-ri --no-rdoc github-linguist -v ${VERSION} \
+  && gem install --no-document github-linguist -v ${VERSION} \
   && apk del build-dependencies \
   && rm -rf /var/cache/apk/*
 
