@@ -10,15 +10,15 @@ ARG BUILDPLATFORM
 RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
 
 LABEL maintainer="CrazyMax" \
-  org.label-schema.build-date=$BUILD_DATE \
-  org.label-schema.name="linguist" \
-  org.label-schema.description="GitHub Language Savant to detect blob languages." \
-  org.label-schema.version=$VERSION \
-  org.label-schema.url="https://github.com/crazy-max/docker-linguist" \
-  org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/crazy-max/docker-linguist" \
-  org.label-schema.vendor="CrazyMax" \
-  org.label-schema.schema-version="1.0"
+  org.opencontainers.image.created=$BUILD_DATE \
+  org.opencontainers.image.url="https://github.com/crazy-max/docker-linguist" \
+  org.opencontainers.image.source="https://github.com/crazy-max/docker-linguist" \
+  org.opencontainers.image.version=$VERSION \
+  org.opencontainers.image.revision=$VCS_REF \
+  org.opencontainers.image.vendor="CrazyMax" \
+  org.opencontainers.image.title="linguist" \
+  org.opencontainers.image.description="GitHub Language Savant to detect blob languages" \
+  org.opencontainers.image.licenses="MIT"
 
 ENV VERSION="7.9.0"
 
