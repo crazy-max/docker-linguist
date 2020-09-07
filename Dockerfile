@@ -19,7 +19,7 @@ LABEL maintainer="CrazyMax" \
   org.opencontainers.image.description="GitHub Language Savant to detect blob languages" \
   org.opencontainers.image.licenses="MIT"
 
-ENV VERSION="7.9.0"
+ENV VERSION="7.11.0"
 
 RUN apk --update --no-cache add \
     ruby \
