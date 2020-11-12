@@ -6,7 +6,7 @@ RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGET
 
 LABEL maintainer="CrazyMax"
 
-ENV VERSION="7.11.1"
+ENV VERSION="7.12.0"
 
 RUN apk --update --no-cache add \
     ruby \
