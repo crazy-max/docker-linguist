@@ -1,13 +1,9 @@
+ARG LINGUIST_VERSION="7.12.2"
+
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.12
-
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
-
 LABEL maintainer="CrazyMax"
 
-ENV VERSION="7.12.2"
-
+ARG LINGUIST_VERSION
 RUN apk --update --no-cache add \
     ruby \
     ruby-rugged \
@@ -18,7 +14,7 @@ RUN apk --update --no-cache add \
     cmake \
     icu-dev \
     ruby-dev \
-  && gem install --no-document github-linguist -v ${VERSION} \
+  && gem install --no-document github-linguist -v ${LINGUIST_VERSION} \
   && apk del build-dependencies \
   && rm -rf /var/cache/apk/*
 
