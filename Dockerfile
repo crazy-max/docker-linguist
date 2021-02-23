@@ -1,4 +1,4 @@
-ARG LINGUIST_VERSION="7.12.2"
+ARG LINGUIST_VERSION="7.13.0"
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.12
 LABEL maintainer="CrazyMax"
