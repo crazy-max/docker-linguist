@@ -1,6 +1,6 @@
 ARG LINGUIST_VERSION="7.13.0"
 
-FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.12
+FROM alpine:3.12
 LABEL maintainer="CrazyMax"
 
 ARG LINGUIST_VERSION
