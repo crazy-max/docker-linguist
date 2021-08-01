@@ -1,7 +1,6 @@
-ARG LINGUIST_VERSION="7.14.0"
+ARG LINGUIST_VERSION="7.16.0"
 
-FROM alpine:3.13
-LABEL maintainer="CrazyMax"
+FROM alpine:3.14
 
 ARG LINGUIST_VERSION
 RUN apk --update --no-cache add \
