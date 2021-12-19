@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.18.0-r0 (2021/12/20)
+
+* Linguist 7.18.0
+* Alpine Linux 3.15
+
 ## 7.17.0-r0 (2021/10/20)
 
 * Linguist 7.17.0
