@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.22.1-r0 (2022/08/15)
+
+* Linguist 7.22.1
+* Alpine Linux 3.16
+
 ## 7.20.0-r0 (2022/05/22)
 
 * Linguist 7.20.0
