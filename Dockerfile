@@ -1,6 +1,9 @@
-ARG LINGUIST_VERSION="7.20.0"
+# syntax=docker/dockerfile:1
 
-FROM alpine:3.15
+ARG LINGUIST_VERSION="7.22.1"
+ARG ALPINE_VERSION="3.16"
+
+FROM alpine:${ALPINE_VERSION}
 
 ARG LINGUIST_VERSION
 RUN apk --update --no-cache add \
