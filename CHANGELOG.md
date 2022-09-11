@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.23.0-r0 (2022/09/11)
+
+* Linguist 7.23.0
+* Set `/repo` as safe directory for git
+
 ## 7.22.1-r0 (2022/08/15)
 
 * Linguist 7.22.1
