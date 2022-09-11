@@ -1,0 +1,45 @@
+name: test
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '**.md'
+
+env:
+  DEFAULT_TAG: linguist:local
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build
+        uses: docker/bake-action@v2
+        with:
+          targets: image-local
+      -
+        name: Checkout test repo
+        uses: actions/checkout@v3
+        with:
+          repository: crazy-max/diun
+          path: diun
+      -
+        name: Test
+        run: |
+          docker run -t --rm -v "$(pwd)/diun:/repo" ${{ env.DEFAULT_TAG }}
