@@ -1,5 +1,9 @@
 name: test
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -7,13 +11,11 @@ on:
     paths-ignore:
       - '**.md'
   pull_request:
-    branches:
-      - 'master'
     paths-ignore:
       - '**.md'
 
 env:
-  DEFAULT_TAG: linguist:local
+  BUILD_TAG: linguist:test
 
 jobs:
   test:
@@ -33,6 +35,8 @@ jobs:
         uses: docker/bake-action@v3
         with:
           targets: image-local
+        env:
+          DEFAULT_TAG: ${{ env.BUILD_TAG }}
       -
         name: Checkout test repo
         uses: actions/checkout@v3
@@ -42,4 +46,4 @@ jobs:
       -
         name: Test
         run: |
-          docker run -t --rm -v "$(pwd)/diun:/repo" ${{ env.DEFAULT_TAG }}
+          docker run -t --rm -v "$(pwd)/diun:/repo" ${{ env.BUILD_TAG }}
