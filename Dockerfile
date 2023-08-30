@@ -8,13 +8,13 @@ ARG LINGUIST_VERSION
 RUN apk --update --no-cache add \
     git \
     ruby \
-    ruby-rugged \
     ruby-charlock_holmes \
-    ruby-json \
   && apk --update --no-cache add -t build-dependencies \
     build-base \
     cmake \
     icu-dev \
+    py3-python-gssapi \
+    openssl-dev \
     ruby-dev \
   && gem install --no-document github-linguist -v ${LINGUIST_VERSION} \
   && git config --global --add safe.directory /repo \
