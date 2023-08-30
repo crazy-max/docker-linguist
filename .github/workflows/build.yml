@@ -131,7 +131,7 @@ jobs:
         name: Upload digest
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.variant }}-digests
+          name: digests
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1
@@ -152,7 +152,7 @@ jobs:
         name: Download digests
         uses: actions/download-artifact@v3
         with:
-          name: ${{ matrix.variant }}-digests
+          name: digests
           path: /tmp/digests
       -
         name: Set up Docker Buildx
@@ -181,5 +181,6 @@ jobs:
       -
         name: Inspect image
         run: |
-          docker buildx imagetools inspect ${{ env.DOCKERHUB_SLUG }}:${{ steps.meta.outputs.version }}
-          docker buildx imagetools inspect ${{ env.GHCR_SLUG }}:${{ steps.meta.outputs.version }}
+          tag=$(jq -r '.target."docker-metadata-action".args.DOCKER_META_VERSION' /tmp/bake-meta.json)
+          docker buildx imagetools inspect ${{ env.DOCKERHUB_SLUG }}:${tag}
+          docker buildx imagetools inspect ${{ env.GHCR_SLUG }}:${tag}
