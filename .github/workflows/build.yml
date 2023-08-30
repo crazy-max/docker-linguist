@@ -85,11 +85,6 @@ jobs:
           if-no-files-found: error
           retention-days: 1
       -
-        name: Remove tags from meta bake definition
-        run: |
-          # we just want labels being set in this job
-          jq -r 'del(.target."docker-metadata-action".tags)' "/tmp/bake-meta.json" > "${{ steps.meta.outputs.bake-file }}"
-      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       -
@@ -119,9 +114,10 @@ jobs:
         with:
           files: |
             ./docker-bake.hcl
-            ${{ steps.meta.outputs.bake-file }}
+            /tmp/bake-meta.json
           targets: image
           set: |
+            *.tags=
             *.cache-from=type=gha,scope=build-${{ env.PLATFORM_PAIR }}
             *.cache-to=type=gha,scope=build-${{ env.PLATFORM_PAIR }}
             *.output=type=image,"name=${{ env.DOCKERHUB_SLUG }},${{ env.GHCR_SLUG }}",push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' }}
