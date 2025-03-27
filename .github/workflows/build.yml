@@ -54,6 +54,7 @@ jobs:
         org.opencontainers.image.title=Linguist
         org.opencontainers.image.description=GitHub Language Savant to detect blob languages
         org.opencontainers.image.vendor=CrazyMax
+      login-registry: ${{ matrix.login-registry }}
       login-username: ${{ matrix.login-username }}
     secrets:
       login-password: ${{ secrets[matrix.login-secret-key] }}
