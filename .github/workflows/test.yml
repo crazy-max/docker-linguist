@@ -40,7 +40,7 @@ jobs:
           DEFAULT_TAG: ${{ env.BUILD_TAG }}
       -
         name: Checkout test repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: crazy-max/diun
           path: diun
