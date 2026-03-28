@@ -17,29 +17,20 @@ on:
 
 jobs:
   build:
-    uses: crazy-max/.github/.github/workflows/bake-distribute-mp.yml@0acc187b016a2946786f201397bbcfb2c530ffc7
+    uses: docker/github-builder/.github/workflows/bake.yml@70313223e2665c3211b454b3fea6534624e78d64 # v1.4.0
     permissions:
       contents: read # same as global permissions
+      id-token: write # for signing attestation(s) with GitHub OIDC Token
       packages: write # required to push to GHCR
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          -
-            image: crazymax/linguist
-            login-registry: docker.io
-            login-username: crazymax
-            login-secret-key: DOCKER_PASSWORD
-          -
-            image: ghcr.io/crazy-max/linguist
-            login-registry: ghcr.io
-            login-username: ${{ github.repository_owner }}
-            login-secret-key: GITHUB_TOKEN
     with:
+      setup-qemu: true
       target: image-all
+      output: image
       push: ${{ github.event_name != 'pull_request' }}
       set-meta-labels: true
-      meta-image: ${{ matrix.image }}
+      meta-images: |
+        crazymax/linguist
+        ghcr.io/crazy-max/linguist
       meta-tags: |
         type=match,pattern=(.*)-r,group=1
         type=ref,event=pr
@@ -48,7 +39,11 @@ jobs:
         org.opencontainers.image.title=Linguist
         org.opencontainers.image.description=GitHub Language Savant to detect blob languages
         org.opencontainers.image.vendor=CrazyMax
-      login-registry: ${{ matrix.login-registry }}
-      login-username: ${{ matrix.login-username }}
     secrets:
-      login-password: ${{ secrets[matrix.login-secret-key] }}
+      registry-auths: |
+        - registry: docker.io
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+        - registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
