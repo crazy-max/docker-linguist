@@ -4,7 +4,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
 permissions:
   contents: read
 
@@ -14,20 +13,14 @@ on:
       - 'master'
     tags:
       - '*'
-    paths-ignore:
-      - '**.md'
   pull_request:
-    paths-ignore:
-      - '**.md'
 
 jobs:
   build:
     uses: crazy-max/.github/.github/workflows/bake-distribute-mp.yml@0acc187b016a2946786f201397bbcfb2c530ffc7
     permissions:
-      # same as global permissions
-      contents: read
-      # required to push to GHCR
-      packages: write
+      contents: read # same as global permissions
+      packages: write # required to push to GHCR
     strategy:
       fail-fast: false
       matrix:
