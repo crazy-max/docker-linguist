@@ -17,7 +17,7 @@ on:
 
 jobs:
   build:
-    uses: crazy-max/.github/.github/workflows/bake-distribute-mp.yml@0acc187b016a2946786f201397bbcfb2c530ffc7
+    uses: crazy-max/.github/.github/workflows/bake-distribute-mp.yml@bb328ea508cd6a89d0865555ddbeb148e5724aed
     permissions:
       contents: read # same as global permissions
       packages: write # required to push to GHCR
