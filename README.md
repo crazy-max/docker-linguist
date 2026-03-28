@@ -39,10 +39,10 @@ docker buildx bake image-all
 
 ## Image
 
-| Registry                                                                                         | Image                           |
-|--------------------------------------------------------------------------------------------------|---------------------------------|
-| [Docker Hub](https://hub.docker.com/r/crazymax/linguist/)                                            | `crazymax/linguist`                 |
-| [GitHub Container Registry](https://github.com/users/crazy-max/packages/container/package/linguist)  | `ghcr.io/crazy-max/linguist`        |
+| Registry                                                                                            | Image                        |
+|-----------------------------------------------------------------------------------------------------|------------------------------|
+| [Docker Hub](https://hub.docker.com/r/crazymax/linguist/)                                           | `crazymax/linguist`          |
+| [GitHub Container Registry](https://github.com/users/crazy-max/packages/container/package/linguist) | `ghcr.io/crazy-max/linguist` |
 
 Following platforms for this image are available:
 
@@ -50,13 +50,9 @@ Following platforms for this image are available:
 $ docker buildx imagetools inspect crazymax/linguist --format "{{json .Manifest}}" | \
   jq -r '.manifests[] | select(.platform.os != null and .platform.os != "unknown") | .platform | "\(.os)/\(.architecture)\(if .variant then "/" + .variant else "" end)"'
 
-linux/386
 linux/amd64
-linux/arm/v6
 linux/arm/v7
 linux/arm64
-linux/ppc64le
-linux/s390x
 ```
 
 ## Usage
