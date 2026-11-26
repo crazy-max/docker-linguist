@@ -3,7 +3,7 @@
 # renovate: datasource=rubygems depName=github-linguist
 ARG LINGUIST_VERSION=9.5.0
 # renovate: datasource=docker depName=alpine versioning=docker
-ARG ALPINE_VERSION=3.23
+ARG ALPINE_VERSION=3.24
 
 FROM alpine:${ALPINE_VERSION}
 ARG LINGUIST_VERSION
